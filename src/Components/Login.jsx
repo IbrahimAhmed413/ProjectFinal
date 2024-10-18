@@ -1,41 +1,37 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./Login.css"; // Importing the CSS file
+import './Login.css';
+
 export function Login() {
-  const [UserName, setUserName] = useState();
-  const [Password, setPassword] = useState();
-
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  function HandleLogin(e){
+
+  function handleLogin(e) {
     e.preventDefault();
-    const CorrectUsername = 'ibrahim';
-    const CorrectPassword = 'chalog';
+    const correctUsername = 'ibrahim';
+    const correctPassword = 'chalog';
 
-    if(UserName === CorrectUsername && Password === CorrectPassword){
-
-        navigate('/UserTable');
-    }
-    else{
-        console.log('Write valid Username or Password');
+    if (userName === correctUsername && password === correctPassword) {
+      navigate('/UserTable');
+    } else {
+      console.log('Invalid Username or Password');
     }
   }
+
   return (
-    <>
-      <form onSubmit={HandleLogin}>
-        <input
-          type="text"
-          placeholder="Username"
-          id="LoginInput"
-          onChange={(e)=> setUserName(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          id="LoginInput"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">LogIn </button>
-      </form>
-    </>
+    <form onSubmit={handleLogin}>
+      <input
+        type="text"
+        placeholder="Username"
+        onChange={(e) => setUserName(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button type="submit">Log In</button>
+    </form>
   );
 }
