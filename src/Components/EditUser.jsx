@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import "./UserTable.css";
+import { TextField, Button, Container, Paper, Typography } from "@mui/material";
 
 export function EditUser({ user, onSave }) {
   const [editUser, setEditUser] = useState(user);
 
   useEffect(() => {
-    setEditUser(user); // Update form when a new user is selected for editing
+    setEditUser(user);
   }, [user]);
 
   function handleChange(e) {
@@ -15,42 +15,55 @@ export function EditUser({ user, onSave }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSave(editUser); // Pass the edited user data to the parent component
+    onSave(editUser);
   }
 
-  if (!editUser) return null; // Don't render if no user is selected for editing
+  if (!editUser) return null;
 
   return (
-
-    <form onSubmit={handleSubmit}>
-      <label>Full Name</label>
-      <input
-        type="text"
-        name="FullName"
-        value={editUser.FullName}
-        onChange={handleChange}
-        required
-      />
-      <br />
-      <label>Phone Number</label>
-      <input
-        type="text"
-        name="PhoneNumber"
-        value={editUser.PhoneNumber}
-        onChange={handleChange}
-        required
-      />
-      <br />
-      <label>Address</label>
-      <input
-        type="text"
-        name="Address"
-        value={editUser.Address}
-        onChange={handleChange}
-        required
-      />
-      <br />
-      <button type="submit">Save Changes</button>
-    </form>
+    <Container component="main" maxWidth="xs">
+      <Paper elevation={3} sx={{ padding: 4, mt: 4, borderRadius: 3 }}>
+        <Typography component="h1" variant="h5" textAlign="center">
+          Edit User
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            label="Full Name"
+            name="FullName"
+            value={editUser.FullName}
+            onChange={handleChange}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            label="Phone Number"
+            name="PhoneNumber"
+            value={editUser.PhoneNumber}
+            onChange={handleChange}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            label="Address"
+            name="Address"
+            value={editUser.Address}
+            onChange={handleChange}
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Save Changes
+          </Button>
+        </form>
+      </Paper>
+    </Container>
   );
 }
