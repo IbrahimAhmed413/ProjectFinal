@@ -10,7 +10,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import Paper from "@mui/material/Paper";
 import { TableRow } from "@mui/material";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 
 export function UserTable({ userData, setUserData }) {
   const [editingUser, setEditingUser] = useState(null);
@@ -65,7 +65,8 @@ export function UserTable({ userData, setUserData }) {
                 <TableCell>
                   <Button
                     onClick={() => {
-                      handleDelete(user.ID);
+                      if (window.confirm("Are you sure to delete data?"))
+                        handleDelete(user.ID);
                     }}
                   >
                     Del
@@ -78,6 +79,8 @@ export function UserTable({ userData, setUserData }) {
       </TableContainer>
 
       {/* Show Add New User Button */}
+      <br />
+      <br />
       <Link to="/addUser">
         <button>Add New User</button>
       </Link>
